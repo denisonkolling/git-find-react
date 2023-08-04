@@ -15,9 +15,23 @@
   -webkit-text-size-adjust: 100%;
 }
 
+body {
+    margin: 0;
+    padding: 0;
+}
+
 hr {
   background-color: rgba(229,229,229, 0.2);
   border: 1px solid rgba(229,229,229, 0.2);
 }
 
-
+html ::-webkit-scrollbar {
+  width: 12px;
+}
+html ::-webkit-scrollbar-thumb {
+  border-radius: 50px;
+  background: #cccc;
+}
+html ::-webkit-scrollbar-track {
+  background: #ccccc;
+}

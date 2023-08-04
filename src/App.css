@@ -30,6 +30,14 @@ input {
   padding: 10px;
 }
 
+@media (max-width: 1530px)
+{
+  input
+   {
+    margin-bottom: 1rem;
+   }
+}
+
 button {
   border: 1px solid #999999;
   border-radius: 22px;
@@ -37,6 +45,14 @@ button {
   background: #2D333B;
   font-size: 18px;
   padding: 10px;
+  padding-right: 16px;
+  padding-left: 16px;
+  cursor: pointer;
+}
+
+
+button:hover {
+  opacity: 0.75;
 }
 
 .profile {

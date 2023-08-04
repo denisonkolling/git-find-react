@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 
-const index = () => {
+const Header = () => {
 	return (
 		<header>
 			<h1>GitHub</h1>
@@ -9,4 +9,4 @@ const index = () => {
 	);
 };
 
-export default index;
+export default Header;

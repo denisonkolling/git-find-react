@@ -12,20 +12,29 @@ function App() {
 	const handleGetData = async () => {
 		const userData = await fetch(`https://api.github.com/users/${user}`);
 		const newUser = await userData.json();
-		console.log(newUser);
+		
 
 		if (newUser.name) {
 			const { avatar_url, name, bio, login } = newUser;
 			setCurrentUser({ avatar_url, name, bio, login });
 
-			const reposData = await fetch(`https://api.github.com/users/${user}/repos`);
+			const reposData = await fetch(
+				`https://api.github.com/users/${user}/repos`
+			);
 			const newRepos = await reposData.json();
-			
-			if(newRepos.length) {
+
+			if (newRepos.length) {
 				setRepos(newRepos);
+				setUser('')
 			}
 		}
 	};
+
+	function handleKeyDown(e) {
+		if (e.key === 'Enter') {
+			handleGetData();
+		}
+	}
 
 	return (
 		<>
@@ -40,6 +49,7 @@ function App() {
 								value={user}
 								onChange={(e) => setUser(e.target.value)}
 								placeholder="@username"
+								onKeyDown={handleKeyDown}
 							/>
 							<button onClick={handleGetData}>Search</button>
 						</div>
@@ -48,10 +58,7 @@ function App() {
 					{currentUser?.name ? (
 						<>
 							<div className="profile">
-								<img
-									className="profile-picture"
-									src={currentUser.avatar_url}
-								/>
+								<img className="profile-picture" src={currentUser.avatar_url} />
 								<div>
 									<h3>{currentUser.name}</h3>
 									<span>@{currentUser.login}</span>
@@ -64,12 +71,12 @@ function App() {
 
 					{repos?.length ? (
 						<>
-						<div>
-							<h4>Repositories</h4>
-							{repos.map(repo => ( 
-								<ItemList	title={repo.name}	description={repo.description}/>
-							))}
-						</div>
+							<div>
+								<h4>Repositories</h4>
+								{repos.map((repo) => (
+									<ItemList title={repo.name} description={repo.description} />
+								))}
+							</div>
 						</>
 					) : null}
 				</div>

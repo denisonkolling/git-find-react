@@ -1,0 +1,57 @@
+/* * {
+  background-image: url(./assets/github.svg);
+  background-repeat: no-repeat;
+} */
+
+.content {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  
+}
+
+.background {
+  height: 85vh;
+  margin: 5vh;
+  position: absolute;
+  left: 0;
+}
+
+.info {
+  width: 60%;
+  margin-right: 90px;
+  margin-top: 40px;
+}
+
+input {
+  border: 1px solid #999999;
+  border-radius: 22px;
+  min-width: 250px;
+  width: 80%;
+  margin-right: 12px;
+  background: transparent;
+  font-size: 18px;
+  padding: 10px;
+}
+
+button {
+  border: 1px solid #999999;
+  border-radius: 22px;
+  margin-right: 12px;
+  background: #2D333B;
+  font-size: 18px;
+  padding: 10px;
+}
+
+.profile {
+  display: flex;
+  margin: 20px 0;
+}
+
+.profile-picture {
+  width: 120px;
+  height: 120px;
+  border-radius: 60px;
+  border: 2px solid #E5E5E5;
+}

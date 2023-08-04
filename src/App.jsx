@@ -2,8 +2,31 @@ import Header from './components/Header';
 import background from '././assets/github.svg';
 import './App.css';
 import ItemList from './components/ItemList';
+import { useState } from 'react';
 
 function App() {
+	const [user, setUser] = useState('');
+	const [currentUser, setCurrentUser] = useState(null);
+	const [repos, setRepos] = useState(null);
+
+	const handleGetData = async () => {
+		const userData = await fetch(`https://api.github.com/users/${user}`);
+		const newUser = await userData.json();
+		console.log(newUser);
+
+		if (newUser.name) {
+			const { avatar_url, name, bio, login } = newUser;
+			setCurrentUser({ avatar_url, name, bio, login });
+
+			const reposData = await fetch(`https://api.github.com/users/${user}/repos`);
+			const newRepos = await reposData.json();
+			
+			if(newRepos.length) {
+				setRepos(newRepos);
+			}
+		}
+	};
+
 	return (
 		<>
 			<Header />
@@ -12,28 +35,43 @@ function App() {
 				<div className="info">
 					<div>
 						<div>
-							<input name="user" placeholder="@username" />
-							<button>Search</button>
+							<input
+								name="user"
+								value={user}
+								onChange={(e) => setUser(e.target.value)}
+								placeholder="@username"
+							/>
+							<button onClick={handleGetData}>Search</button>
 						</div>
 					</div>
-					<div className="profile">
-						<img
-							className="profile-picture"
-							src="https://avatars.githubusercontent.com/u/115804868?v=4"
-						/>
+
+					{currentUser?.name ? (
+						<>
+							<div className="profile">
+								<img
+									className="profile-picture"
+									src={currentUser.avatar_url}
+								/>
+								<div>
+									<h3>{currentUser.name}</h3>
+									<span>@{currentUser.login}</span>
+									<p>{currentUser.bio}</p>
+								</div>
+							</div>
+							<hr />
+						</>
+					) : null}
+
+					{repos?.length ? (
+						<>
 						<div>
-							<h3>Denison Kolling</h3>
-							<span>@denisonkolling</span>
-							<p>description</p>
+							<h4>Repositories</h4>
+							{repos.map(repo => ( 
+								<ItemList	title={repo.name}	description={repo.description}/>
+							))}
 						</div>
-					</div>
-					<hr />
-					<div>
-						<h4>Repositories</h4>
-						<ItemList title='map-react' description='a react map application' />
-						<ItemList title='map-react' description='a react map application' />
-						<ItemList title='map-react' description='a react map application' />
-					</div>
+						</>
+					) : null}
 				</div>
 			</div>
 		</>

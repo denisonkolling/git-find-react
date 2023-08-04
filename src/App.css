@@ -14,7 +14,7 @@
 .background {
   height: 85vh;
   margin: 5vh;
-  position: absolute;
+  position: relative;
   left: 0;
 }
 
@@ -46,7 +46,7 @@ button {
 
 .profile {
   display: flex;
-  margin: 20px 0;
+  margin: 40px 0;
 }
 
 .profile-picture {
@@ -54,4 +54,35 @@ button {
   height: 120px;
   border-radius: 60px;
   border: 2px solid #E5E5E5;
+  margin-right: 32px;
 }
+
+.profile h3 {
+  color: #999999;
+  font-size: 24px;
+  margin: 0;
+}
+
+.profile span {
+  display: block;
+  color: #999999;
+  font-size: 12px;
+  margin: 0;
+}
+
+.profile p {
+  display: block;
+  color: #999999;
+  font-size: 12px;
+  margin: 20px 0 0 0;
+
+}
+
+.info h4 {
+  font-size: 24px;
+  font-weight: 500;
+  color: #cccc
+}
+
+
+
